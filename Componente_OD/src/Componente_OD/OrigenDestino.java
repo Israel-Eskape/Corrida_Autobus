@@ -48,7 +48,7 @@ public class OrigenDestino extends JPanel implements Serializable,ActionListener
     public void actionPerformed(ActionEvent ae) {
         modelD.removeAllElements();
         for (int i = 0; i < modelO.getSize(); i++) {
-            if(!modelO.getElementAt(i).equals(modelD.getSelectedItem()))
+            if(!modelO.getElementAt(i).equals(modelO.getSelectedItem()))
                 modelD.addElement(modelO.getElementAt(i));
         }
     }
