@@ -20,28 +20,14 @@ public class ClaseAutobus {
         this.numAsientos = numAsientos;
     }
 
-    public int getIdClase() {
-        return idClase;
-    }
-
-    public void setIdClase(int idClase) {
-        this.idClase = idClase;
-    }
-
+   
+   
     public String getNombre() {
         return nombre;
     }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
+   
     public int getNumAsientos() {
         return numAsientos;
     }
-
-    public void setNumAsientos(int numAsientos) {
-        this.numAsientos = numAsientos;
-    }
-    
+ 
 }

@@ -21,71 +21,41 @@ public class Corrida {
     private int costo;
     private ArrayList<Integer> ocupados;
 
-    public Corrida(int idCorrida, Poblacion origen, Poblacion destino, Date fecha_hr, ClaseAutobus claseA, int costo, ArrayList<Integer> ocupados) {
+    public Corrida(int idCorrida, Poblacion origen, Poblacion destino, Date fecha_hr, ClaseAutobus claseA, int costo) {
         this.idCorrida = idCorrida;
         this.origen = origen;
         this.destino = destino;
         this.fecha_hr = fecha_hr;
         this.claseA = claseA;
         this.costo = costo;
-        this.ocupados = ocupados;
+        this.ocupados = new ArrayList<Integer>();
     }
 
-    public int getIdCorrida() {
-        return idCorrida;
+    public void setOcupados(ArrayList<Integer> ocup){
+        ocupados = ocup;
     }
-
-    public void setIdCorrida(int idCorrida) {
-        this.idCorrida = idCorrida;
-    }
-
-    public Poblacion getOrigen() {
-        return origen;
-    }
-
-    public void setOrigen(Poblacion origen) {
-        this.origen = origen;
-    }
-
-    public Poblacion getDestino() {
-        return destino;
-    }
-
-    public void setDestino(Poblacion destino) {
-        this.destino = destino;
-    }
-
-    public Date getFecha_hr() {
-        return fecha_hr;
-    }
-
-    public void setFecha_hr(Date fecha_hr) {
-        this.fecha_hr = fecha_hr;
-    }
-
-    public ClaseAutobus getClaseA() {
-        return claseA;
-    }
-
-    public void setClaseA(ClaseAutobus claseA) {
-        this.claseA = claseA;
-    }
-
-    public int getCosto() {
-        return costo;
-    }
-
-    public void setCosto(int costo) {
-        this.costo = costo;
-    }
-
-    public ArrayList<Integer> getOcupados() {
+    public ArrayList<Integer> getOcupados(){
         return ocupados;
     }
-
-    public void setOcupados(ArrayList<Integer> ocupados) {
-        this.ocupados = ocupados;
+    public int getIdCorrida(){
+        return idCorrida;
     }
-    
-    
+    public String getOrigen(){
+        return origen.getPoblacion();
+    }
+    public String getDestino(){
+        return destino.getPoblacion();
+    }
+    public Date getFecha(){
+        return fecha_hr;
+    }
+    public ClaseAutobus getClaseAutobus(){
+        return claseA;
+    }
+    public int getCosto(){
+        return costo;
+    }
+    public int getDisponible(){
+        return claseA.getNumAsientos()-ocupados.size();
+    }
 }

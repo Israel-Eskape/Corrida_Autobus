@@ -20,28 +20,7 @@ public class Poblacion {
         this.estado = estado;
     }
 
-    public int getIdPoblacion() {
-        return idPoblacion;
-    }
-
-    public void setIdPoblacion(int idPoblacion) {
-        this.idPoblacion = idPoblacion;
-    }
-
-    public String getNombre() {
+    public String getPoblacion() {
         return nombre;
     }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-    
 }
