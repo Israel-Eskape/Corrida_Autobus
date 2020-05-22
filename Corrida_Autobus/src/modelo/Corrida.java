@@ -55,7 +55,7 @@ public class Corrida {
     public int getCosto(){
         return costo;
     }
-    public int getDisponible(){
+    public int getDisponibles(){
         return claseA.getNumAsientos()-ocupados.size();
     }
 }

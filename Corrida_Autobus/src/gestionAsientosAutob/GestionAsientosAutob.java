@@ -13,11 +13,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import modelo.ClaseAutobus;
 import modelo.Corrida;
 import modelo.ModeloTablaCorridas;
@@ -48,6 +50,9 @@ public class GestionAsientosAutob extends javax.swing.JDialog {
     private int numCorSel;
     private String numCols[]= {"Num.Corr","Origen","Destino","Fecha","Hora","Clase Autobus","Precio","Lugares"};
    
+    DateFormat formatoAMD = new SimpleDateFormat("yyyyMMdd");
+    DateFormat formatoHM = new SimpleDateFormat("HH:mm");
+    
     public GestionAsientosAutob(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -68,18 +73,17 @@ public class GestionAsientosAutob extends javax.swing.JDialog {
     private void formaCorridas() {
         Date fecha;
         Calendar calen = Calendar.getInstance();  
-        fecha = calen.getTime();
+  //      fecha = calen.getTime();
         for (int i = 0; i < 50; i++) {
             
-            calen.set(Calendar.DAY_OF_MONTH, 1);
+            calen.add(Calendar.DAY_OF_MONTH, 1);
             fecha = calen.getTime();
 //            calen.set(Calendar.HOUR, i);
-            corrida = new Corrida(i, poblaciones[i%7], poblaciones[i%3+4], fecha, claseAutobus[i%3], 100+i*50);
+            corrida = new Corrida(i+1, poblaciones[i%7], poblaciones[i%3+4], fecha, claseAutobus[i%3], 100+i*50);
             corridass.add(corrida);
         }
     }
     private boolean comparaDMA(Date fechaa,Date fechab){
-        DateFormat formatoAMD = new SimpleDateFormat("yyyyMMdd");
         String sfechaa;
         String sfechab;
         sfechaa = formatoAMD.format(fechaa);
@@ -100,8 +104,8 @@ public class GestionAsientosAutob extends javax.swing.JDialog {
                     corriSel.add(corridass.get(i));
                 }
                 modeloTC = new ModeloTablaCorridas(corriSel, numCols);
-                tCorridas.setModel(modeloT);
-            }
+                tCorridas.setModel(modeloTC);
+        }
     }
     private JComboBox crearComboTipo(){
         JComboBox combo = new JComboBox(new String[]{"Adulto","Tercera Edad","Niño"}){
@@ -227,7 +231,7 @@ public class GestionAsientosAutob extends javax.swing.JDialog {
                     .addComponent(jLabel4))
                 .addGap(35, 35, 35)
                 .addComponent(jButton1)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Inicio", jPanel2);
@@ -273,13 +277,14 @@ public class GestionAsientosAutob extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addComponent(jButton2)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Corridas", jPanel3);
 
         setAsi.setDistribucion("Horizontal");
         setAsi.setNumAsientos(36);
+        setAsi.setOpaque(false);
 
         jLabel5.setText("Corridas Disponibles");
 
@@ -316,7 +321,7 @@ public class GestionAsientosAutob extends javax.swing.JDialog {
                 .addComponent(setAsi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Reserva", jPanel4);
@@ -360,7 +365,7 @@ public class GestionAsientosAutob extends javax.swing.JDialog {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                 .addComponent(jButton4)
                 .addGap(85, 85, 85))
         );
@@ -375,10 +380,10 @@ public class GestionAsientosAutob extends javax.swing.JDialog {
         );
         boletosLayout.setVerticalGroup(
             boletosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 298, Short.MAX_VALUE)
+            .addGap(0, 343, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Boleto", boletos);
+        jTabbedPane1.addTab("Boletos", boletos);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -388,7 +393,7 @@ public class GestionAsientosAutob extends javax.swing.JDialog {
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 298, Short.MAX_VALUE)
+            .addGap(0, 343, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Cancelar", jPanel7);
@@ -404,8 +409,8 @@ public class GestionAsientosAutob extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 90, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
 
         pack();
@@ -448,6 +453,8 @@ public class GestionAsientosAutob extends javax.swing.JDialog {
         }
         modeloT = new DefaultTableModel(datos, enca);
         nombres.setModel(modeloT);
+        TableColumn col = nombres.getColumnModel().getColumn(2);
+        col.setCellEditor(new DefaultCellEditor(combotipo));
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -461,9 +468,17 @@ public class GestionAsientosAutob extends javax.swing.JDialog {
         for (int b = 0; b < nb; b++) {
             boletoss[b] = new JTextArea();
             asientosOcupados.add((Integer)modeloT.getValueAt(b, 0));
-            boletoss[b].append("Viaje : "+cOrigen+" --> "+cDestino+"\n");
+            boletoss[b].append("Viaje : "+corrida.getOrigen()+ "\n "+corrida.getDestino()+"\n");
+            boletoss[b].append("Fecha : "+formatoAMD.format(corrida.getFecha())+"\n");
+            boletoss[b].append("Hora  : "+formatoHM.format(corrida.getFecha())+"\n");
+            boletoss[b].append("Asiento  : "+modeloT.getValueAt(b, 0)+"\n");
+            boletoss[b].append("Pasajero : "+modeloT.getValueAt(b, 1)+"\n");
+            boletoss[b].append("Tipo Pasa:"+modeloT.getValueAt(b, 2)+"\n");
+            boletoss[b].append("Precio   :  $ "+corrida.getCosto());
+            boletos.add(boletoss[b]);
         }
-        
+        setAsi.setReservar();
+        corridass.get(numCorSel).setOcupados(setAsi.getReservados());    
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

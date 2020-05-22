@@ -40,7 +40,7 @@ public class ModeloTablaCorridas extends AbstractTableModel{
                     return formatoHora.format(datos.get(r).getFecha());
             case 5: return datos.get(r).getClaseAutobus().getNombre();
             case 6: return datos.get(r).getCosto();
-            default:return datos.get(r).getOcupados();
+            default:return datos.get(r).getDisponibles();
         }
     }
     @Override
